@@ -33,7 +33,18 @@ class _HomePageState extends State<HomePage> {
         title: Text('Objetos Emprestados'),
       ),
       floatingActionButton: _buildFloatingActionButton(),
-      body: _buildStuffList(),
+      body: Center(
+        child: Container(
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              colors: [Colors.indigo,Colors.blueGrey, Colors.deepPurple])),
+        child: Center(
+          child: _buildStuffList(),
+          ),
+        )
+      )
     );
   }
 
@@ -41,6 +52,7 @@ class _HomePageState extends State<HomePage> {
     return FloatingActionButton.extended(
       label: Text('Emprestar'),
       icon: Icon(Icons.add),
+      backgroundColor: Colors.blue[900],
       onPressed: _addStuff,
     );
   }
@@ -85,7 +97,8 @@ class _HomePageState extends State<HomePage> {
 
       Flushbar(
         title: "Novo empréstimo",
-        backgroundColor: Colors.black,
+        
+        // backgroundColor: Colors.black,
         message: "${stuff.description} emprestado para ${stuff.contactName}.",
         duration: Duration(seconds: 2),
       )..show(context);

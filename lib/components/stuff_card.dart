@@ -25,9 +25,11 @@ class StuffCard extends StatelessWidget {
 
   _buildStuffCard(Stuff stuff) {
     return Card(
-      child: ListTile(
+        color: Color.fromRGBO(0, 0, 0, 0.2),
+        child: ListTile(
         title: Text(stuff.description),
         subtitle: Text(stuff.contactName),
+        
         leading: CircleAvatar(
           child: stuff.photoExist
               ? null

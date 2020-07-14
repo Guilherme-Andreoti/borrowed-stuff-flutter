@@ -34,8 +34,9 @@ class MyApp extends StatelessWidget {
     return ThemeData(
       brightness: Brightness.dark,
       primaryColor: Color(0xFF212121),
-      accentColor: Colors.deepOrange,
-      primarySwatch: Colors.deepOrange,
+      accentColor: Colors.blue,
+      primarySwatch: Colors.indigo,
+      fontFamily: 'Raleway'
     );
   }
 }
