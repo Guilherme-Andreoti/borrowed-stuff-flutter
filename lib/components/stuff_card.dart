@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:borrowed_stuff/models/stuff.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class StuffCard extends StatelessWidget {
   final Stuff stuff;
@@ -58,6 +59,23 @@ class StuffCard extends StatelessWidget {
           onTap: onDelete,
         ),
       ],
+      secondaryActions: <Widget>[
+        IconSlideAction(
+          caption: 'Ligar',
+          color: Colors.green,
+          icon: Icons.phone,
+          onTap: () => _makePhoneCall('tel:'+stuff.phone),
+        
+        ),
+      ]
     );
   }
 }
+
+ Future<void> _makePhoneCall(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
