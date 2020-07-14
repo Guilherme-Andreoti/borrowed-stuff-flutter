@@ -117,7 +117,8 @@ class _StuffDetailPageState extends State<StuffDetailPage> {
           context: context,
           firstDate: DateTime(1900),
           initialDate: currentValue ?? DateTime.now(),
-          lastDate: DateTime(2100),
+          lastDate: DateTime.now(), //Data máxima para registrar o empréstimo 
+          
         );
       },
       controller: _dateController,
@@ -125,6 +126,9 @@ class _StuffDetailPageState extends State<StuffDetailPage> {
         _currentStuff.loanDate = date;
       },
       validator: (date) {
+        if ((date).isAfter(DateTime.now())){ 
+          return 'A data de empréstimo deve ser igual ou inferior ao dia de hoje.';
+        }
         return Validator.isEmptyDate(date);
       },
     );
@@ -185,6 +189,9 @@ class _StuffDetailPageState extends State<StuffDetailPage> {
       },
       controller: _phoneController,
       validator: (value) {
+        if(value.length < 14){
+          return 'Por favor, digite um número válido';
+        }
         return Validator.isEmptyText(value);
       },
     );
