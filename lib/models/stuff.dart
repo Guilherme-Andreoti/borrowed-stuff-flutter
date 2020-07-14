@@ -6,6 +6,7 @@ class Stuff {
   String contactName;
   DateTime loanDate;
   String photoPath;
+  String phone;
 
   Stuff({
     this.id,
@@ -13,6 +14,7 @@ class Stuff {
     this.contactName,
     this.loanDate,
     this.photoPath,
+    this.phone
   });
 
   String get loadDateString =>
@@ -27,6 +29,7 @@ class Stuff {
       'contactName': contactName,
       'loanDate': loanDate.millisecondsSinceEpoch,
       'photoPath': photoPath,
+      'phone': phone,
     };
   }
 
@@ -39,6 +42,7 @@ class Stuff {
       contactName: map['contactName'],
       loanDate: DateTime.fromMillisecondsSinceEpoch(map['loanDate']),
       photoPath: map['photoPath'],
+      phone: map['phone'],
     );
   }
 
@@ -52,6 +56,7 @@ class Stuff {
     String contactName,
     DateTime loanDate,
     String photoPath,
+    String phone,
   }) {
     return Stuff(
       id: id ?? this.id,
@@ -59,12 +64,13 @@ class Stuff {
       contactName: contactName ?? this.contactName,
       loanDate: loanDate ?? this.loanDate,
       photoPath: photoPath ?? this.photoPath,
+      phone: phone ?? this.phone,
     );
   }
 
   @override
   String toString() {
-    return 'Stuff(id: $id, description: $description, contactName: $contactName, loanDate: $loanDate, photoPath: $photoPath)';
+    return 'Stuff(id: $id, description: $description, contactName: $contactName, loanDate: $loanDate, photoPath: $photoPath, phone $phone)';
   }
 
   @override
@@ -76,7 +82,8 @@ class Stuff {
       o.description == description &&
       o.contactName == contactName &&
       o.loanDate == loanDate &&
-      o.photoPath == photoPath;
+      o.photoPath == photoPath &&
+      o.phone == phone;
   }
 
   @override
@@ -85,6 +92,7 @@ class Stuff {
       description.hashCode ^
       contactName.hashCode ^
       loanDate.hashCode ^
-      photoPath.hashCode;
+      photoPath.hashCode ^
+      phone.hashCode;
   }
 }

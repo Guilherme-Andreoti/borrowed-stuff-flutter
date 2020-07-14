@@ -25,6 +25,7 @@ class _StuffDetailPageState extends State<StuffDetailPage> {
   final _descriptionController = TextEditingController();
   final _nameController = TextEditingController();
   final _dateFormat = DateFormat('dd/MM/yyyy');
+  final _phoneController = TextEditingController();
 
   var _currentStuff = Stuff();
 
@@ -36,6 +37,7 @@ class _StuffDetailPageState extends State<StuffDetailPage> {
       _dateController.text = _dateFormat.format(_currentStuff.loanDate);
       _descriptionController.text = _currentStuff.description;
       _nameController.text = _currentStuff.contactName;
+      _phoneController.text = _currentStuff.phone; 
     }
   }
 
@@ -44,6 +46,7 @@ class _StuffDetailPageState extends State<StuffDetailPage> {
     _dateController.clear();
     _descriptionController.clear();
     _nameController.clear();
+    _phoneController.clear();
     super.dispose();
   }
 
@@ -90,6 +93,7 @@ class _StuffDetailPageState extends State<StuffDetailPage> {
           _buildDateInputField(),
           _buildDescriptionInputField(),
           _buildNameInputField(),
+          _buildPhoneInputField(),
           _buildConfirmButton(),
         ],
       ),
@@ -152,6 +156,24 @@ class _StuffDetailPageState extends State<StuffDetailPage> {
         });
       },
       controller: _nameController,
+      validator: (value) {
+        return Validator.isEmptyText(value);
+      },
+    );
+  }
+
+    _buildPhoneInputField({Function(String) onSaved}) {
+    return TextFormField(
+      decoration: InputDecoration(
+        icon: Icon(Icons.phone),
+        labelText: 'Telefone',
+      ),
+      onSaved: (value) {
+        setState(() {
+          _currentStuff.phone = value;
+        });
+      },
+      controller: _phoneController,
       validator: (value) {
         return Validator.isEmptyText(value);
       },
