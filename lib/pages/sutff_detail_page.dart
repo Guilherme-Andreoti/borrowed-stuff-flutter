@@ -1,10 +1,14 @@
-import 'package:borrowed_stuff/helpers/validator.dart';
+
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:brasil_fields/brasil_fields.dart';
+
 import 'package:intl/intl.dart';
 
 import 'package:borrowed_stuff/components/back_dialog.dart';
 import 'package:borrowed_stuff/components/photo_container.dart';
+import 'package:borrowed_stuff/helpers/validator.dart';
 import 'package:borrowed_stuff/models/stuff.dart';
 
 class StuffDetailPage extends StatefulWidget {
@@ -164,9 +168,15 @@ class _StuffDetailPageState extends State<StuffDetailPage> {
 
     _buildPhoneInputField({Function(String) onSaved}) {
     return TextFormField(
+        inputFormatters: [
+          WhitelistingTextInputFormatter.digitsOnly,
+          TelefoneInputFormatter(),
+        ],
+      keyboardType: TextInputType.number,
       decoration: InputDecoration(
         icon: Icon(Icons.phone),
         labelText: 'Telefone',
+
       ),
       onSaved: (value) {
         setState(() {
